@@ -8,9 +8,9 @@ BKM Express ödeme,kart eşleştirme ve kart değiştirme işlemlerini gerçekle
 ## Kurulum
 
 #### npm
-```$ npm install react-native-bkmexpress-sdk --save```
+```$ npm install macellan/react-native-bkmexpress-sdk --save```
 #### yarn
-```$ yarn add react-native-bkmexpress-sdk```
+```$ yarn add macellan/react-native-bkmexpress-sdk```
 
 ## IOS
 

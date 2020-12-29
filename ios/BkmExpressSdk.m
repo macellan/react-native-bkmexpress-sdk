@@ -29,25 +29,25 @@ RCT_EXPORT_METHOD(payment:(NSString *)TOKEN
 
     NSLog(@"BKMExpress Log TOKEN = %@", TOKEN);
     NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT = %@", ENVIRONMENT);
-    
+
     BKMExpressPaymentViewController *vc = [[BKMExpressPaymentViewController alloc] initWithPaymentToken:TOKEN delegate:self];
-    
+
     _callback = [callback copy];
-    
+
     // if debug mode is enabled, this sdk connect to preprod otherwise connect to prod.
     if([ENVIRONMENT isEqual:(@"PREPROD")]) {
         NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT PREPROD ON");
         [vc setEnableDebugMode:YES];
     }
-    
+
     // Present view controller
     UIViewController *rootController = UIApplication.sharedApplication.keyWindow.rootViewController;
-    
+
     while (rootController.presentedViewController != nil)
     {
         rootController = rootController.presentedViewController;
     }
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [rootController presentViewController:vc animated:YES completion:nil];
     });
@@ -75,32 +75,32 @@ RCT_EXPORT_METHOD(submitConsumer:(NSString *)TOKEN
                   ENVIRONMENT:(NSString *)ENVIRONMENT
                   callback:(RCTResponseSenderBlock)callback)
 {
-    if (TOKEN == (id)[NSNull null] || TOKEN.length == 0 ) NSLog(@"BKMExpress Log TOKEN is null");
-
-    NSLog(@"BKMExpress Log BKM_TICKET_TOKEN = %@", TOKEN);
-    NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT = %@", ENVIRONMENT);
-    
-    // instantiate view controller with custom constructor
-    BKMExpressPairViewController *vc = [[BKMExpressPairViewController alloc] initWithToken:TOKEN delegate:self];
-    
-    _callback = [callback copy];
-    
-    // if debug mode is enabled, this sdk connect to preprod otherwise connect to prod.
-    if([ENVIRONMENT isEqual:(@"PREPROD")]) {
-        NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT PREPROD ON");
-        [vc setEnableDebugMode:YES];
-    }
-    
-    // Present view controller
-    UIViewController *rootController = UIApplication.sharedApplication.keyWindow.rootViewController;
-    
-    while (rootController.presentedViewController != nil)
-    {
-        rootController = rootController.presentedViewController;
-    }
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        [rootController presentViewController:vc animated:YES completion:nil];
+     if (TOKEN == (id)[NSNull null] || TOKEN.length == 0 ) NSLog(@"BKMExpress Log TOKEN is null");
+
+     NSLog(@"BKMExpress Log BKM_TICKET_TOKEN = %@", TOKEN);
+     NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT = %@", ENVIRONMENT);
+
+     // instantiate view controller with custom constructor
+     BKMExpressPairViewController *vc = [[BKMExpressPairViewController alloc] initWithToken:TOKEN delegate:self];
+
+     _callback = [callback copy];
+
+     // if debug mode is enabled, this sdk connect to preprod otherwise connect to prod.
+     if([ENVIRONMENT isEqual:(@"PREPROD")]) {
+         NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT PREPROD ON");
+         [vc setEnableDebugMode:YES];
+     }
+
+     // Present view controller
+     UIViewController *rootController = UIApplication.sharedApplication.keyWindow.rootViewController;
+
+     while (rootController.presentedViewController != nil)
+     {
+         rootController = rootController.presentedViewController;
+     }
+
+     [rootController presentViewController:vc animated:YES completion:nil];
     });
 }
 
@@ -108,31 +108,31 @@ RCT_EXPORT_METHOD(resubmitConsumer:(NSString *)TICKET
                   ENVIRONMENT:(NSString *)ENVIRONMENT
                   callback:(RCTResponseSenderBlock)callback)
 {
-    if (TICKET == (id)[NSNull null] || TICKET.length == 0 ) NSLog(@"BKMExpress Log TICKET is null");
-
-    NSLog(@"BKMExpress Log TICKET = %@", TICKET);
-    NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT = %@", ENVIRONMENT);
-    
-    // instantiate view controller with custom constructor
-    BKMExpressPairViewController *vc = [[BKMExpressPairViewController alloc] initWithTicket:TICKET withDelegate:self];
-
-    _callback = [callback copy];
-    
-    // if debug mode is enabled, this sdk connect to preprod otherwise connect to prod.
-    if([ENVIRONMENT isEqual:(@"PREPROD")]) {
-        NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT PREPROD ON");
-        [vc setEnableDebugMode:YES];
-    }
-    
-    // Present view controller
-    UIViewController *rootController = UIApplication.sharedApplication.keyWindow.rootViewController;
-    
-    while (rootController.presentedViewController != nil)
-    {
-        rootController = rootController.presentedViewController;
-    }
-    
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (TICKET == (id)[NSNull null] || TICKET.length == 0 ) NSLog(@"BKMExpress Log TICKET is null");
+
+        NSLog(@"BKMExpress Log TICKET = %@", TICKET);
+        NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT = %@", ENVIRONMENT);
+
+        // instantiate view controller with custom constructor
+        BKMExpressPairViewController *vc = [[BKMExpressPairViewController alloc] initWithTicket:TICKET withDelegate:self];
+
+        _callback = [callback copy];
+
+        // if debug mode is enabled, this sdk connect to preprod otherwise connect to prod.
+        if([ENVIRONMENT isEqual:(@"PREPROD")]) {
+            NSLog(@"BKMEXPRESS - MYLOG ENVIRONMENT PREPROD ON");
+            [vc setEnableDebugMode:YES];
+        }
+
+        // Present view controller
+        UIViewController *rootController = UIApplication.sharedApplication.keyWindow.rootViewController;
+
+        while (rootController.presentedViewController != nil)
+        {
+            rootController = rootController.presentedViewController;
+        }
+
         [rootController presentViewController:vc animated:YES completion:nil];
     });
 }
